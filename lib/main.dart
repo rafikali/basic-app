@@ -39,23 +39,39 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      "whats your favorite color?",
-      "whats your favourite animal?",
-    ];
+
 
     return Scaffold(
       appBar: AppBar(
         title: Text('new app'),
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Question(
-             questionText: questions[questionIndex],
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.redAccent,
           ),
-          Answer(handler: answerQuestion),
-          Answer(handler: answerQuestion),
-          Answer(handler: answerQuestion),
+         Positioned(
+           bo
+           child: Center(
+             child: Container(
+               height: 200,
+               width: 200,
+               margin: EdgeInsets.all(25),
+               decoration: BoxDecoration(
+                 image: DecorationImage(
+                   image: NetworkImage('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Zmxvd2Vyc3xlbnwwfHwwfHw%3D&w=1000&q=80'),
+                   fit: BoxFit.cover
+                 ),
+
+                 color: Colors.white,
+                 borderRadius: BorderRadius.circular(50)
+               ),
+
+             ),
+           ),
+         ),
 
         ],
       )
