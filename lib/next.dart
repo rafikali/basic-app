@@ -1,3 +1,4 @@
+import 'package:basics/SharedPrefUtils.dart';
 import 'package:basics/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,25 +15,30 @@ class NextPage extends StatefulWidget {
 
 class _NextPageState extends State<NextPage> {
 
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
-}
 
   @override
   void initState() {
     // TODO: implement initState
-    getNamePreference();
+   getData();
+
   }
-String? username;
-Future getNamePreference() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? username;
 
-  username =  prefs.getString('name') ?? '';
 
-}
+   getData(){
+   SharedPrefUtils().getNamePreferences().then((value) => {
+      setState((){
+        username = value;
+      })
+    });
+    // print('this is' + pref);
+    // setState(() {
+    // username = pref.toString();
+    // });
+
+  }
+
+
 
 
 
@@ -58,6 +64,7 @@ Future getNamePreference() async {
 
     );
   }
+}
 
 
 

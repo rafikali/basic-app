@@ -1,3 +1,4 @@
+import 'package:basics/SharedPrefUtils.dart';
 import 'package:basics/next.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,22 +32,21 @@ class _HomePageState extends State<HomePage> {
                 decoration: const InputDecoration(
                   labelText: 'Username',
 
-                ),
+                )
               ),
               ElevatedButton(
                   onPressed: () async {
-                    await saveNamePreferences(namecontroller.text.toString())
+                    await SharedPrefUtils().saveNamePreferences(namecontroller.text.toString())
                         .then((value) {
                       Navigator.pushNamed(context, NextPage.routeName);
                     }
-
                     );
                   },
                   child: Text('Click Here')),
 
 
             ]
-        ),
+        )   ,
       ),
 
 
@@ -54,12 +54,9 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-  Future saveNamePreferences(String name) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String names = prefs.setString('name', name).toString();
-    print(names.toString());
-  }
 }
+
+
 
 
 
