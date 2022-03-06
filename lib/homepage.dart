@@ -18,17 +18,6 @@ class _HomePageState extends State<HomePage> {
 
   TextEditingController namecontroller = TextEditingController();
 
-   bool? error;
-      @override
-  initState(){   
-
-        error = false;
-
-        super.initState();
-
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,29 +35,15 @@ class _HomePageState extends State<HomePage> {
               ),
               ElevatedButton(
                   onPressed: () async {
-
-
-
                     await saveNamePreferences(namecontroller.text.toString())
                         .then((value) {
-                      if (value == true) {
-                       return Navigator.pushNamed(context, NextPage.routeName);
-                      } else {
-                        setState(() {
-                             error == true;
-                        });
-
-                      }
+                      Navigator.pushNamed(context, NextPage.routeName);
                     }
 
                     );
                   },
                   child: Text('Click Here')),
 
-
-              error == true ?
-              Container(child: Text('val cannot be empty')) :
-              Container(child: Center(child: Text('please add value')),)
 
             ]
         ),
@@ -78,57 +53,25 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future saveNamePreferences(String? name) async {
-    print(name);
-    if (name != "") {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String names = prefs.setString('name', name!).toString();
-      print(names.toString());
-      return true;
-    }
 
-
-  else {
-      return false;
-    }
-  }
-
-  showMsg(errorsts) {
-    if (errorsts == true) {
-
-      setState(() {
-        error == true;
-
-      });
-
-
-
-    } else {
-      setState(() {
-        error == false;
-
-      });
-
-
-
-    }
+  Future saveNamePreferences(String name) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String names = prefs.setString('name', name).toString();
+    print(names.toString());
   }
 }
 
 
 
 
-//   void saveName(uname) {
-//     String name = uname ;
-//     saveNamePreferences(uname);
-//   }
+
+
+
+
+// class SharedPrefUtils {
+//
+//
 // }
-
-
-class SharedPrefUtils {
-
-
-}
 
 
 

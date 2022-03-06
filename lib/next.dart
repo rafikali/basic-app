@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class NextPage extends StatefulWidget {
   static const String routeName = '/next';
 
-
    NextPage();
   @override
   State<NextPage> createState() => _NextPageState();
@@ -16,26 +15,29 @@ class NextPage extends StatefulWidget {
 class _NextPageState extends State<NextPage> {
 
   @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+}
+
+  @override
   void initState() {
     // TODO: implement initState
-    super.initState();
     getNamePreference();
   }
-  String username = '';
-
-  Future getNamePreference() async {
+String? username;
+Future getNamePreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-setState(() {
+
   username =  prefs.getString('name') ?? '';
-  print('this is next page'+username);
 
-});
-
-    // return name;
+}
 
 
 
-  }
+
+
 
   // void updateName(String name) {
   //   setState(() {
@@ -56,7 +58,9 @@ setState(() {
 
     );
   }
-}
+
+
+
 
 
 
